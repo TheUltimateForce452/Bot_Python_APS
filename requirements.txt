@@ -1,0 +1,1 @@
+python-telegram-bot # Añade aquí otras dependencias de tu bot
