@@ -30,10 +30,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN groupadd -g 1000 app && useradd -u 1000 -g app -m app
+COPY requirements.txt ./
 
-COPY --from=builder /usr/local/lib/python*/site-packages /usr/local/lib/python*/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN groupadd -g 1000 app && useradd -u 1000 -g app -m app
 
 COPY --from=builder /app /app
 
